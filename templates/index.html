@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Task Manager</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        .container {
+            background: white;
+            color: black;
+            width: 70%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #343a40;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        .pending {
+            color: red;
+            font-weight: bold;
+        }
+
+        .completed {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>📚 Student Task Manager</h1>
+
+<div class="container">
+
+<form action="/add" method="post">
+    <input type="text" name="title" placeholder="Enter Task" required>
+    <input type="date" name="deadline" required>
+    <button>Add Task</button>
+</form>
+
+<table>
+<tr>
+    <th>ID</th>
+    <th>Task</th>
+    <th>Deadline</th>
+    <th>Status</th>
+</tr>
+
+{% for t in tasks %}
+<tr>
+    <td>{{t[0]}}</td>
+    <td>{{t[1]}}</td>
+    <td>{{t[2]}}</td>
+    <td class="{% if t[3]=='Pending' %}pending{% else %}completed{% endif %}">
+        {{t[3]}}
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>
